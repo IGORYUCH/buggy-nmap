@@ -41,7 +41,6 @@ def inspect_diapason(start_adress, amount):
         scanning_adress_int10 += 1
 
 
-#a = [__file__, '192.168.0.1-255', '-T4', '-F']
 diapason = argv[1]
 diapason_start, diapason_end = utils.get_start_end(diapason)
 nmap_args = ['nmap'] + argv[2:]
