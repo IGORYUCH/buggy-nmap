@@ -55,7 +55,7 @@ adresses_per_thread = [adresses_amount//threads] * threads
 adresses_per_thread[-1] += adresses_amount % threads + 1
 ts = []
 lock = Lock()
-
+#
 start_time = time()
 CMD_ENCODING = '866'
 for thread in range(threads):
