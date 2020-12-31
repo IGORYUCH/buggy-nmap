@@ -26,3 +26,15 @@ def get_start_end(ip):
             end_ip_octets.append(octet)
     return '.'.join(start_ip_octets), '.'.join(end_ip_octets)
 
+
+def distribute_evenly(length, number):
+    even_list = []
+    if number < length:
+        even_list = [1] * number
+    else:
+        even_list = [number//length] * length
+        for i in range(number % length):
+            even_list[i] += 1
+
+    return even_list
+
