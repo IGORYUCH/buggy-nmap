@@ -16,7 +16,7 @@ Where:
 
 `12` - number of threads/tasks you'd like your program will be 'parallelized'
 
-`192.168.0.1-266` - ip-diapason to scan
+`192.168.0.1-255` - ip-diapason to scan
 
 `-T4 -F` - some args nmap will receive
 
@@ -29,11 +29,11 @@ The common output looks as follows:
 ...
 Scanned in 55.69 seconds
 ```
-These are respresents data about services parsed from nmap output:
+These are represents data about services parsed from nmap output:
 
 Where:
 
-`192.168.0.110` - ip-adress on which service runs
+`192.168.0.110` - ip-address on which service runs
 
 `554` - port on host
 
