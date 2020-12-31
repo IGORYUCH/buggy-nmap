@@ -13,12 +13,12 @@ def get_host_info(hostname: str, command: str):
     return result_stdout, result_stderr
 
 
-def inspect_diapason(start_adress, amount):
-    scanning_adress_int10 = start_adress
+def inspect_diapason(start_address, amount):
+    scanning_address_int10 = start_address
     for i in range(amount):
-        scanning_adress_hex = bytes.fromhex(hex(scanning_adress_int10)[2:].zfill(8))
-        scanning_adress = utils.hex_to_ip(scanning_adress_hex)
-        stdout, stderr = get_host_info(scanning_adress, ' '.join(nmap_args))
+        scanning_address_hex = bytes.fromhex(hex(scanning_address_int10)[2:].zfill(8))
+        scanning_address = utils.hex_to_ip(scanning_address_hex)
+        stdout, stderr = get_host_info(scanning_address, ' '.join(nmap_args))
 
         if stderr:
             if lock.acquire():
@@ -35,19 +35,19 @@ def inspect_diapason(start_adress, amount):
                 status = service_data[1]
                 service_name = service_data[2]
 
-                scanned_services.append((scanning_adress, port, transport, status, service_name))
+                scanned_services.append((scanning_address, port, transport, status, service_name))
 
-        print('scanned', scanning_adress)
-        scanning_adress_int10 += 1
+        print('scanned', scanning_address)
+        scanning_address_int10 += 1
 
 
 def main():
     offset = 0
-    for thread_adresses in utils.distribute_evenly(threads, adresses_amount):
-        start_adress = diapason_start_int10 + offset
-        thread = Thread(target=inspect_diapason, args=(start_adress, thread_adresses))
+    for thread_addresses in utils.distribute_evenly(threads, addresses_amount):
+        start_address = diapason_start_int10 + offset
+        thread = Thread(target=inspect_diapason, args=(start_address, thread_addresses))
         threads_list.append(thread)
-        offset += thread_adresses
+        offset += thread_addresses
 
     for thread in threads_list:
         thread.start()
@@ -70,7 +70,7 @@ scanned_services = []
 diapason_start_int10 = int.from_bytes(utils.ip_to_hex(diapason_start), 'big')
 diapason_end_int10 = int.from_bytes(utils.ip_to_hex(diapason_end), 'big')
 
-adresses_amount = diapason_end_int10 - diapason_start_int10 + 1
+addresses_amount = diapason_end_int10 - diapason_start_int10 + 1
 threads_list = []
 lock = Lock()
 
