@@ -57,13 +57,13 @@ async def main():
     print(f'Scanned in {round(time() - start_time, 2)} seconds')
 
 
-diapason = argv[1]
+tasks = int(argv[1])
+diapason = argv[2]
 diapason_start, diapason_end = utils.get_start_end(diapason)
-nmap_args = ['nmap'] + argv[2:]
+nmap_args = ['nmap'] + argv[3:]
 scanned_services = []
 tasks_list = []
 
-tasks = 16
 diapason_start_int10 = int.from_bytes(utils.ip_to_hex(diapason_start), 'big')
 diapason_end_int10 = int.from_bytes(utils.ip_to_hex(diapason_end), 'big')
 adresses_amount = diapason_end_int10 - diapason_start_int10 + 1

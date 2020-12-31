@@ -61,13 +61,12 @@ def main():
     print(f'Scanned in {round(time() - start_time, 2)} seconds')
 
 
-argv = ['awef', '192.168.0.1', '-T4', '-F']
-diapason = argv[1]
+threads = int(argv[1])
+diapason = argv[2]
 diapason_start, diapason_end = utils.get_start_end(diapason)
-nmap_args = ['nmap'] + argv[2:]
+nmap_args = ['nmap'] + argv[3:]
 scanned_services = []
 
-threads = 16
 diapason_start_int10 = int.from_bytes(utils.ip_to_hex(diapason_start), 'big')
 diapason_end_int10 = int.from_bytes(utils.ip_to_hex(diapason_end), 'big')
 
