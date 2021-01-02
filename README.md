@@ -14,7 +14,7 @@ nmaper.py 12 192.168.0.1-255 -T4 -F
 ```
 Where:
 
-`12` - number of threads/tasks you'd like your program will be 'parallelized'
+`12` - number of threads/tasks you'd like your program will be "parallelized"
 
 `192.168.0.1-255` - ip-diapason to scan
 
